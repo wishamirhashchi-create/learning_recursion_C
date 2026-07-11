@@ -2,7 +2,7 @@
  
 int factorial ( int n ){
     if (n<=1) return 1; // once condition is true the recursion will stop 
-    return n * factorial(n-1); // multiply by previous factorial
+    return n * factorial(n-1); // multiply by previous number
 }
 
 
