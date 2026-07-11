@@ -1,0 +1,12 @@
+#include <stdio.h>
+ 
+int factorial ( int n ){
+    if (n<=1) return 1; // once condition is true the recursion will stop 
+    return n * factorial(n-1); // multiply by previous factorial
+}
+
+
+int main(){
+  printf("\n%i", factorial(10)); 
+  return 0;
+}
