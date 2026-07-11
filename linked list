@@ -7,22 +7,8 @@ typedef struct node{
 } NODE;
 
 
-int insert_node(NODE *root, NODE *add){
-   
-      if (root == NULL || add == NULL) { // ensure both pointers are valid
-        return 0; 
-      } 
-
-
-      NODE * n = root; // using n to loop over the list of nodes
-      while(n->next != NULL){ //looping over list until it reaches the end
-         n = n->next;
-      }
-      n->next = add; /*a very important thing to remember is that the add->next MUST point to a valid address or NULL eventually, 
-      if its uninitialized it would have an invalid address and dereferencing would lead to a crash or infinite loop or undefined behaviour*/
-      return 1; 
-
-}
+int insert_node(NODE *root, NODE *add);
+void print_node(const NODE *root);
 
 
 int main(){
@@ -33,6 +19,36 @@ int main(){
    insert_node(&root , &add1);
    insert_node(&root , &add2);
 
-   printf("\n%i, %i, %i", root.x , root.next->x , root.next->next->x); //ill add a function to print it easir soon
+   print_node(&root);
 
+}
+
+
+int insert_node(NODE *root, NODE *add){
+   
+      if (root == NULL || add == NULL) { // ensure both pointers are valid
+        return 0;
+      } 
+
+
+      NODE * n = root; // using n to loop over the list of nodes
+      while(n->next != NULL){ //looping over list until it reaches the end
+         n = n->next;
+      }
+      n->next = add; /*a very important thing to remember is that the add->next MUST point to a valid address or NULL eventually, 
+      if its uninitialized it would have an invalid address and dereferencing would lead to a crash or infinite loop or undefined behaviour*/
+      return 1;
+
+}
+
+
+
+void print_node(const NODE *root){
+
+    const NODE *n = root; 
+
+    while (n != NULL){
+        printf("%i\n", n->x);
+        n = n->next;
+    }
 }
