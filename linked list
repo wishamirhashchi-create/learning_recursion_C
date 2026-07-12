@@ -20,6 +20,7 @@ int main(){
    insert_node(&root , &add2);
 
    print_node(&root);
+   return 0;
 
 }
 
