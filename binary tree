@@ -1,0 +1,55 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct node{
+
+   int x;
+   struct node *right;
+   struct node *left;
+} NODE;
+
+
+NODE *search_node(NODE *root, int target){
+
+   NODE *n = root;
+   while (n != NULL){
+      if (n->x==target){return n;}
+      if (n->x>target){n = n->left;}
+      else if (n->x<target) {n = n->right;}
+      
+   }
+   return NULL;
+
+   
+}
+
+
+void insert_node(NODE **r, int x){
+
+   if (*r == NULL){ // if this is true recursion stops
+      *r = (NODE *)malloc(sizeof(NODE)); // we must use pointer to pointer in order to chance actual address of *r 
+      (*r)->x = x;
+      (*r)->right = NULL; // assigne right and left to null
+      (*r)->left = NULL;
+      
+   }
+   else if((*r)->x > x){ // if value of current node is bigger then x go to left because smaller nodes are stored in left
+      insert_node(&(*r)->left , x);
+   }
+   else if((*r)->x < x){ // vice versa
+      insert_node(&(*r)->right , x);
+   }
+}
+
+
+int main(){
+   NODE add3 = {4, NULL, NULL};
+   NODE add2 = {3, &add3};
+   NODE add1 = {2, &add2,NULL};
+   NODE root = {1, &add1,&add2};
+   NODE * r = &root;
+   insert_node(&r , 5);
+   
+   printf("\n%i , %i" , add3.right->x , search_node(&root , 5)->x);
+   return 0;
+}
